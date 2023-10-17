@@ -1,3 +1,4 @@
+import { parsedEnv } from '@/app/lib/env';
 import { checkoutFormSchema } from '@/app/lib/validations';
 import { NextResponse } from 'next/server';
 
@@ -8,6 +9,9 @@ export async function GET(request: Request) {
     price: 100,
   };
 
+  // use parsed env instead process.env with type hint.
+  console.log(parsedEnv.DATABASE_URL);
+  
   return NextResponse.json(product);
 }
 
