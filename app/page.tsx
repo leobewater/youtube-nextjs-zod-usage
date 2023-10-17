@@ -18,7 +18,7 @@ export default function Home() {
         http://localhost:3000/ (see error in console)
       </div>
       
-      {/* <ProductSearchParams /> */}
+      <ProductSearchParams />
     </main>
   );
 }
