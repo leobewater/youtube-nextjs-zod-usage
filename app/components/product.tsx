@@ -44,6 +44,7 @@ const Product = () => {
         console.log(validatedProduct.data.price);
       });
   }, []);
+  
   return <div>product</div>;
 };
 
