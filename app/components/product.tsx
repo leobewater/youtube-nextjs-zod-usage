@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { z } from 'zod';
+import { productSchema } from '../lib/validations';
 
 // type script not enough to validate the api response, what happen if the api removed one of the key such as name???
 // TS doesn't check the type at runtime
@@ -11,10 +12,11 @@ import { z } from 'zod';
 // };
 
 // This run in runtime
-const productSchema = z.object({
-  name: z.string(),
-  price: z.number(),
-});
+// const productSchema = z.object({
+//   id: z.number().positive(),
+//   name: z.string(),
+//   price: z.number(),
+// });
 
 // use z.infer to get the type for Product instead of re-creating it separately and make the z.object source of truth
 type Product = z.infer<typeof productSchema>;
@@ -31,7 +33,7 @@ const Product = () => {
       .then((res) => res.json())
       .then((product: unknown) => {
         // use Zod to validate the product
-
+clg(product)
         // use safeParse without throwing errors and check with the .success property
         const validatedProduct = productSchema.safeParse(product);
         if (!validatedProduct.success) {

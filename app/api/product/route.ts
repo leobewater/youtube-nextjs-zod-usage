@@ -1,18 +1,32 @@
 import { parsedEnv } from '@/app/lib/env';
-import { checkoutFormSchema } from '@/app/lib/validations';
+import { checkoutFormSchema, productSchema } from '@/app/lib/validations';
 import { NextResponse } from 'next/server';
+import path from 'path';
+import { promises as fs } from 'fs';
 
 export async function GET(request: Request) {
-  const product = {
-    name: 'Cool jeans',
-    //id: '1',
-    price: 100,
-  };
-
   // use parsed env instead process.env with type hint.
-  console.log(parsedEnv.DATABASE_URL);
-  
-  return NextResponse.json(product);
+  console.log('env DATABASE_URL', parsedEnv.DATABASE_URL);
+
+  // const product = {
+  //   name: 'Cool jeans',
+  //   //id: '1',
+  //   price: 100,
+  // };
+
+  // validate on reading json data
+  const jsonDirectory = path.join(process.cwd(), './app/lib');
+  const fileContents = await fs.readFile(jsonDirectory + '/data.json', 'utf8');
+
+  const parsedProduct = productSchema.safeParse(fileContents);
+  console.log(parsedProduct);
+
+  if (!parsedProduct.success) {
+    return NextResponse.json(parsedProduct.error, { status: 422 });
+  }
+
+
+  return NextResponse.json(parsedProduct);
 }
 
 // post method, receiving data

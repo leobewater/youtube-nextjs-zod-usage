@@ -6,7 +6,8 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Product />
-      <CheckoutForm />
+      {/* <CheckoutForm /> */}
+      
       <div>
         Try:
         <br />
@@ -16,7 +17,8 @@ export default function Home() {
         <br />
         http://localhost:3000/ (see error in console)
       </div>
-      <ProductSearchParams />
+      
+      {/* <ProductSearchParams /> */}
     </main>
   );
 }

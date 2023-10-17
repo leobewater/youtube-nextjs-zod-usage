@@ -7,3 +7,9 @@ export const checkoutFormSchema = z.object({
   address: z.string().min(10, 'Too short').max(100, 'Too long').optional(),
   paymentMethod: z.enum(['cash', 'card']),
 });
+
+export const productSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  price: z.number(),
+});
