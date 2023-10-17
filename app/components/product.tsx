@@ -33,7 +33,7 @@ const Product = () => {
       .then((res) => res.json())
       .then((product: unknown) => {
         // use Zod to validate the product
-clg(product)
+
         // use safeParse without throwing errors and check with the .success property
         const validatedProduct = productSchema.safeParse(product);
         if (!validatedProduct.success) {

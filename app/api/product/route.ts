@@ -8,13 +8,8 @@ export async function GET(request: Request) {
   // use parsed env instead process.env with type hint.
   console.log('env DATABASE_URL', parsedEnv.DATABASE_URL);
 
-  // const product = {
-  //   name: 'Cool jeans',
-  //   //id: '1',
-  //   price: 100,
-  // };
-
   // validate on reading json data
+  /*
   const jsonDirectory = path.join(process.cwd(), './app/lib');
   const fileContents = await fs.readFile(jsonDirectory + '/data.json', 'utf8');
 
@@ -24,7 +19,13 @@ export async function GET(request: Request) {
   if (!parsedProduct.success) {
     return NextResponse.json(parsedProduct.error, { status: 422 });
   }
+  */
 
+  const parsedProduct = {
+    id: 1,
+    name: 'Cool jeans',
+    price: 100,
+  };
 
   return NextResponse.json(parsedProduct);
 }
